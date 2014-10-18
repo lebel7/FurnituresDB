@@ -1,0 +1,11 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE FUNCTION [dbo].[ProductCode] (@productid INT)
+RETURNS char(13) 
+AS
+BEGIN 
+RETURN 'LFUR' + right('441000111' + convert(VARCHAR(26), @productid),9)
+END
+GO

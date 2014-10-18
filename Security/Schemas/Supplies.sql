@@ -1,0 +1,3 @@
+CREATE SCHEMA [Supplies]
+AUTHORIZATION [dbo]
+GO
