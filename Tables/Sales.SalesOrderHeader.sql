@@ -24,6 +24,8 @@ CREATE TABLE [Sales].[SalesOrderHeader]
 [rowguid] [uniqueidentifier] NOT NULL ROWGUIDCOL CONSTRAINT [DF_SalesOrderHeader_rowguid] DEFAULT (newid()),
 [ModifiedDate] [datetime] NOT NULL CONSTRAINT [DF_SalesOrderHeader_ModifiedDate] DEFAULT (getdate())
 ) ON [PRIMARY]
+ALTER TABLE [Sales].[SalesOrderHeader] ADD
+CONSTRAINT [FK_SalesOrderHeader_OrderStatus_StatusID] FOREIGN KEY ([StatusID]) REFERENCES [Purchasing].[OrderState] ([OrderStatusID])
 GO
 ALTER TABLE [Sales].[SalesOrderHeader] ADD CONSTRAINT [CK_SalesOrderHeader_DueDate] CHECK (([DueDate]>=[OrderDate]))
 GO
@@ -48,6 +50,4 @@ GO
 ALTER TABLE [Sales].[SalesOrderHeader] ADD CONSTRAINT [FK_SalesOrderHeader_ShipMethod_ShipMethodID] FOREIGN KEY ([ShipMethodID]) REFERENCES [Purchasing].[ShipMethod] ([ShipMethodID])
 GO
 ALTER TABLE [Sales].[SalesOrderHeader] ADD CONSTRAINT [FK_SalesOrderHeader_Address_ShipToAddressID] FOREIGN KEY ([ShipToAddressID]) REFERENCES [Person].[Address] ([AddressID])
-GO
-ALTER TABLE [Sales].[SalesOrderHeader] ADD CONSTRAINT [FK_SalesOrderHeader_OrderStatus_StatusID] FOREIGN KEY ([StatusID]) REFERENCES [Purchasing].[OrderStatus] ([OrderStatusID])
 GO

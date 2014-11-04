@@ -15,12 +15,12 @@ CREATE TABLE [Sales].[OrderHeader]
 [ShipCountry] [varchar] (20) COLLATE Latin1_General_CI_AS NULL,
 [Total] [numeric] (10, 2) NULL
 ) ON [PRIMARY]
+ALTER TABLE [Sales].[OrderHeader] ADD
+CONSTRAINT [FK_Orders_Shippers] FOREIGN KEY ([ShipVia]) REFERENCES [dbo].[ShippingMethod] ([ShipperID])
 GO
 ALTER TABLE [Sales].[OrderHeader] ADD CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED  ([OrderID]) ON [PRIMARY]
 GO
 ALTER TABLE [Sales].[OrderHeader] ADD CONSTRAINT [FK_Orders_Employees] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employees] ([EmployeeID])
 GO
 ALTER TABLE [Sales].[OrderHeader] ADD CONSTRAINT [FK_Orders_Payments] FOREIGN KEY ([PaymentID]) REFERENCES [dbo].[Payments] ([PaymentID])
-GO
-ALTER TABLE [Sales].[OrderHeader] ADD CONSTRAINT [FK_Orders_Shippers] FOREIGN KEY ([ShipVia]) REFERENCES [dbo].[ShippingMehtod] ([ShipperID])
 GO
